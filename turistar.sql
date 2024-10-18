@@ -1,61 +1,35 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2024 a las 17:11:57
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+USE turistar;
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `turistar`
---
-
+INSERT INTO `user` (`id`, `name`, `last_name`, `email`, `password`, `password2`,`image`, `phone`, `birth_day`, `genre`) VALUES 
+(1, 'alejandra', 'velazquez', 'ro@gmail.com', '$2a$10$KwPSfDkCaPltbet2ry82ZuIJ6j30/dH8j0otfDsDaZ6ZIz7MAeGC2', '123123', 'women-default.png', 3885555555, '2002-12-02', 'Mujer'),
+(2, 'pepito', 'rodriguez', 'pepito@gmail.com', '$2a$10$.6l503wiuczstthFMD87UOudbntYi5QAyn6CNTK753bVDsNeDXbg6', '456456', 'women-default.png', 388888888, '2255-12-12', 'Hombre'),
+(3, 'Martin', 'Romero', 'martin@gmail.com', '$2a$10$Sw3rSeCtxYwq.TmZpjdw7OoOvcNWakJiI7XsPNaMngtx5LpbgICFu', '456456', 'women-default.png', 38888888, '2005-05-12', 'Hombre'),
+(4, 'roberta', 'Monzon', 'roberta@gmail.com', '$2a$10$Dvy9wWHYsXcwhY3jYM1oEuqdB9Bb6/Ypa.HI1SllfwvVUlYH2x34.', '456456', 'women-default.png', 3885123123, '2005-12-02', ''),
+(5, 'Marta Maria', 'Lopez', 'marta@gmail.com', '$2a$10$PEvSaimtqJP4gAtQsbF9LOjkdwUR5O6Dt4mQigm3VXSZqbIQ/ZayG', '123123', 'image-1702353099576.jpg', 3885123123, '2002-12-02', '');
+-- --------------------------------------------------------
+-- Estructura de tabla para la tabla `lodging`
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `favorites`
---
-
-CREATE TABLE `favorites` (
-  `id_favorites` int(5) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_lodging` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `favorites`
---
-
-INSERT INTO `favorites` (`id_favorites`, `id_user`, `id_lodging`) VALUES
-(5, 5, 17),
-(11, 1, 3);
-
+INSERT INTO `lodging` (`id_lodging`, `name`, `description`, `price`, `persons`, `id_user`, `province`, `locality`, `street`) VALUES
+(1, 'Casita Purmamarca', 'APROVECHÁ PREVIAJE CON NOSOTROS!!! Casita Purma es una casita nueva dentro del casco histórico de Purmamarca. Dos personas, living-comedor-cocina, baño y patio. Desde las ventanas se puede disfrutar del Cerro de los Siete Colores y del pintoresco pueblo Patrimonio de la Humanida.', 120000, 2, 1, 'Jujuy', 'Purmamarca', 'Av. Siempre viva 234'), 
+(2, 'ECOCABAÑA 3', 'ECOCABAÑA es un concepto de alojamiento rural y ecológico ubicado en Purmamarca con una de las mejores vistas panorámicas del Cerro de los 7 Colores, aquí tendrás un gran espacio para conectar con la naturaleza. Estamos muy cerca de los atractivos turísticos más importantes.', 130000, 4, 2, 'Jujuy', 'Purmamarca', 'Av. de los Tilos'), 
+(3, 'Casa del Artista', 'Casa del Artista ofrece un lugar ideal para una escapada en pareja. Se encuentra situada en un entorno natural, donde se puede disfrutar de la paz y el silencio. Contamos con todos los servicios necesarios para que disfrutes tu estadía.', 100000, 3, 1, 'Jujuy', 'Purmamarca', 'Calle falsa 123'), 
+(4, 'Casa Ushuaia', 'Casa Ushuaia se encuentra ubicada en un barrio tranquilo de la ciudad, a pocas cuadras del centro. Ideal para familias, amigos o grupos. En el lugar se ofrece un espacio verde, pileta y parrilla.', 200000, 6, 1, 'Jujuy', 'Purmamarca', 'Calle Falsa 99'), 
+(5, 'Departamento Buenos Aires', 'Departamento cómodo y acogedor ubicado en el centro de Buenos Aires. Ideal para parejas o grupos de hasta 5 personas. Cuenta con todas las comodidades para hacer de tu estadía una experiencia inolvidable.', 60000, 5, 2, 'Buenos Aires', 'Buenos Aires', 'Av. de Mayo 123'), 
+(6, 'Departamento Bariloche', 'Hermoso departamento en el centro de Bariloche, cerca del Lago Nahuel Huapi. Ideal para disfrutar de la naturaleza y actividades al aire libre. Capacidad hasta 6 personas.', 80000, 6, 2, 'Río Negro', 'Bariloche', 'Calle Mitre 234'), 
+(7, 'Cabañas Mendoza', 'Cabañas en Mendoza con una vista espectacular a la montaña, ideal para disfrutar en pareja o con amigos. Las cabañas están equipadas y tienen pileta.', 120000, 4, 2, 'Mendoza', 'Mendoza', 'Calle del Sol'), 
+(8, 'Cabañas Tucumán', 'Cabañas cómodas y acogedoras en Tucumán, con todas las comodidades. Ideal para familias y grupos. Pileta y espacio verde.', 100000, 5, 2, 'Tucumán', 'San Miguel de Tucumán', 'Av. Rivadavia'), 
+(9, 'Villa Carlos Paz', 'Ubicada en el centro de Villa Carlos Paz, esta cabaña es perfecta para disfrutar del verano con amigos o familia. Tiene pileta y parrilla.', 90000, 5, 2, 'Córdoba', 'Villa Carlos Paz', 'Av. Libertad 34'), 
+(10, 'Casa Iguazú', 'Casa Iguazú es un espacio amplio y luminoso, ideal para disfrutar en familia o grupos. Ubicada cerca de las cataratas, cuenta con pileta.', 150000, 6, 2, 'Misiones', 'Puerto Iguazú', 'Calle de las Aguas 56'), 
+(11, 'Hotel Mediterráneo', 'Hotel en el centro de Iguazú, con todas las comodidades y servicios. Ideal para parejas y familias.', 120000, 4, 2, 'Misiones', 'Puerto Iguazú', 'Av. Brasil 789'), 
+(12, 'Departamento en Iguazú', 'Departamento cómodo y acogedor, ideal para disfrutar de Iguazú. Muy bien ubicado, con todas las comodidades.', 95000, 3, 2, 'Misiones', 'Puerto Iguazú', 'Calle de la Paz 432'), 
+(21, 'Casa Tradicional', 'Casa tradicional en el corazón de Purmamarca, ideal para disfrutar de la cultura local y la gastronomía.', 85000, 4, 1, 'Jujuy', 'Purmamarca', 'Calle de la Historia'), 
+(22, 'ECOCABAÑA 4', 'ECOCABAÑA es un concepto de alojamiento rural y ecológico. Ideal para familias, ubicada en un entorno natural.', 160000, 5, 2, 'Jujuy', 'Purmamarca', 'Av. del Árbol'), 
+(23, 'Hotel Moderno', 'Hotel moderno en Bariloche, con todas las comodidades. Ideal para disfrutar de la naturaleza.', 200000, 4, 2, 'Río Negro', 'Bariloche', 'Calle de la Nieve');
 -- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `images_lodging`
---
-
-CREATE TABLE `images_lodging` (
-  `id_image` int(5) NOT NULL,
-  `id_lodging` int(5) NOT NULL,
-  `name` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `images_lodging`
---
+-- --------------------------------------------------------
 
 INSERT INTO `images_lodging` (`id_image`, `id_lodging`, `name`) VALUES
 (1, 1, 'casaPurma1.jpg'),
@@ -119,19 +93,8 @@ INSERT INTO `images_lodging` (`id_image`, `id_lodging`, `name`) VALUES
 (81, 22, 'image-1702406088583.jpg');
 
 -- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `include`
---
-
-CREATE TABLE `include` (
-  `id_include` int(5) NOT NULL,
-  `name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `include`
---
+-- --------------------------------------------------------
 
 INSERT INTO `include` (`id_include`, `name`) VALUES
 (1, 'Cocina'),
@@ -148,20 +111,8 @@ INSERT INTO `include` (`id_include`, `name`) VALUES
 (12, 'Pileta');
 
 -- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `include_lodging`
---
-
-CREATE TABLE `include_lodging` (
-  `id` int(5) NOT NULL,
-  `id_lodging` int(5) NOT NULL,
-  `id_include` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `include_lodging`
---
+-- --------------------------------------------------------
 
 INSERT INTO `include_lodging` (`id`, `id_lodging`, `id_include`) VALUES
 (18, 23, 1),
@@ -238,235 +189,6 @@ INSERT INTO `include_lodging` (`id`, `id_lodging`, `id_include`) VALUES
 (109, 22, 11);
 
 -- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `lodging`
---
-
-CREATE TABLE `lodging` (
-  `id_lodging` int(5) NOT NULL,
-  `name` varchar(60) NOT NULL,
-  `description` varchar(400) NOT NULL,
-  `price` bigint(7) NOT NULL,
-  `persons` int(11) NOT NULL,
-  `id_user` int(5) NOT NULL,
-  `province` varchar(30) NOT NULL,
-  `locality` varchar(30) NOT NULL,
-  `street` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `lodging`
---
-
-INSERT INTO `lodging` (`id_lodging`, `name`, `description`, `price`, `persons`, `id_user`, `province`, `locality`, `street`) VALUES
-(1, 'Casita Purmamarca', 'APROVECHÁ PREVIAJE CON NOSOTROS!!! Casita Purma es una casita nueva dentro del casco histórico de Purmamarca.  Dos personas, living-comedor-cocina, baño y patio. Desde las ventanas se puede disfrutar del Cerro de los Siete Colores y del pintoresco pueblo Patrimonio de la Humanida', 120000, 2, 1, 'Jujuy', 'Purmamarca', 'Av. Siempre viva 234'),
-(2, 'ECOCABAÑA 3', 'ECOCABAÑA es un concepto de alojamiento rural y ecológico ubicado en Purmamarca con una de las mejores vistas panorámicas del Cerro de los 7 Colores, aquí tendrás un gran espacio para conectar con la naturaleza. Estamos muy cerca de todo, pudiendo recorrer prácticamente toda la c', 30000, 1, 1, 'Jujuy', 'Purmamarca', 'Ruta 9'),
-(3, 'Casa de artista con senderos & arroyo', 'No es una casa cualquiera. De madera de cipres acerrado ahi mismo. Luminosa, amplia, bien aislada para asegurar el mínimo consumo de energía. Decoración de sencilla elegancia acorde al lugar, cuadros de fotos de Florian von der Fecht enmarcados con madera reciclada. sin vecinos, ', 60000, 2, 3, 'Rio Negro', 'Bariloche', 'Oscar Orias 234'),
-(4, 'Un Chiringo entre el bosque y la montaña', 'Cabaña de montaña, que consta de 1 ambiente en planta baja con cocina-comedor, equipado con heladera, anafe a gas, horno eléctrico, jarra eléctrica y vajilla para 4 personas. El baño ubicado en planta baja tiene ducha con mampara. En este ambiente hay un futón cama donde pueden d', 30750, 3, 2, 'BuenosAires', 'Ushuaia', 'Av. Los Olivos 222'),
-(5, 'Departamento en Buenos Aires', 'Espectacular apartamento de tres ambientes en Villa Crespo, muy bien conectado y cerca de Palermo.Torre con amenities y todas las comodidades de una casa: jardin, piscina, cancha de futbol, mucho verde y seguridad 24 hs. Espacios amplios, luminosos y equipados. Tiene escritorio d', 33750, 3, 4, 'BuenosAires', 'Ciudad Autónoma Buenos Aires', 'La Fé 554'),
-(6, 'Departamento HOME - Vista Lago y Bosque', 'Relájate en este increíble alojamiento en un entorno único y pacifico, rodeado de un bosque nativo, aves autóctonas y una hermosa vista al lago Nahuel Huapi. Este departamento moderno y acogedor se encuentra dentro de un barrio cerrado a menos de 5 km del centro de Bariloche, cer', 56250, 3, 1, 'Rio Negro', 'Bariloche', 'Horacio Carrillo 342'),
-(7, 'Vivienda en Mendoza - Vista a las montañas', 'la tierra del malbec, que alberga al imponente cerro Aconcagua, se fortalece como el Olimpo para los enófilos de todo el orbe al formar parte de la prestigiosa red global de las Great Wine Capitals.', 55000, 7, 1, 'Mendoza', 'Las Cuevas', 'Cuba 232'),
-(8, 'Vieja casona en un pequeño pueblo', 'A tan solo 25 kilómetros al oeste de la ciudad de Tucumán se encuentra, enclavada entre los cerros y la selva, la hermosa y pintoresca localidad de Villa Nougués.', 28000, 3, 3, 'BuenosAires', 'Villa Nougués', 'San Martin 212'),
-(9, 'Hostería Villa del Lago', 'se encuentra en Villa Carlos Paz y ofrece salón, dos habitaciones y pileta', 28000, 5, 2, 'Cordoba', 'Villa Carlos Paz', 'Martiarena 1004'),
-(10, 'Alojamiento Puerto Iguazu', 'sEl alojamiento se encuentra en un lugar tranquilo rodeado de naturaleza, cerca de varios atractivos turisticos de la ciudad', 27000, 4, 3, 'Misiones', 'Puerto Iguazu', 'Salta 243'),
-(11, 'Hotel Mediterraneo', 'Hotel centrico ubicado cerca de lugares turisticos', 28500, 4, 1, 'Misiones', 'Puerto Iguazu', 'Formosa 543'),
-(12, 'Cabañas Rincon Santa Maria', 'Cabañas con piscina con cerca perimetral de seguridad, iluminación nocturna en quincho y área de barbacoa', 31500, 8, 4, 'Misiones', 'Puerto Iguazu', 'Costanera 654'),
-(17, 'boquita pasion', 'la mejor casa lejos de todo y mas si quieres olvidar a tu ex, visitanos ya', 120000, 2, 1, 'Cordoba', 'carlos paz', 'Av. Siempre viva 234'),
-(22, 'casas saladas', 'mejor casita lejos de todo y es mas esta super lejos de donde estas llamaya ', 333333, 2, 5, 'BuenosAires', 'carlos paz', 'Av. Siempre viva 234'),
-(23, 'casita en la montañita con chikorita', 'casita pequeña en una montañita pequeña uwu junto con chikorita', 100000, 2, 5, 'Cordoba', 'Villa Carlos Paz', 'Av. Siempre viva 234');
-
+-- Estructura de tabla para la tabla `favorites`
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `reserve`
---
-
-CREATE TABLE `reserve` (
-  `id_reserve` int(5) NOT NULL,
-  `id_guest` int(5) NOT NULL,
-  `id_lodging` int(5) NOT NULL,
-  `check_in` date NOT NULL,
-  `check_out` date NOT NULL,
-  `count_persons` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `reserve`
---
-
-INSERT INTO `reserve` (`id_reserve`, `id_guest`, `id_lodging`, `check_in`, `check_out`, `count_persons`) VALUES
-(1, 1, 4, '2024-10-09', '2024-10-10', 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `user`
---
-
-CREATE TABLE `user` (
-  `id` int(4) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `last_name` varchar(60) NOT NULL,
-  `email` varchar(60) NOT NULL,
-  `password` varchar(80) NOT NULL,
-  `password2` varchar(60) NOT NULL,
-  `image` varchar(80) NOT NULL,
-  `phone` bigint(10) NOT NULL,
-  `birth_day` date NOT NULL,
-  `genre` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `user`
---
-
-INSERT INTO `user` (`id`, `name`, `last_name`, `email`, `password`, `password2`, `image`, `phone`, `birth_day`, `genre`) VALUES
-(1, 'alejandra', 'velazquez', 'ro@gmail.com', '$2a$10$KwPSfDkCaPltbet2ry82ZuIJ6j30/dH8j0otfDsDaZ6ZIz7MAeGC2', '123123', 'women-default.png', 3885555555, '2002-12-02', 'Mujer'),
-(2, 'pepito', 'rodriguez', 'pepito@gmail.com', '$2a$10$.6l503wiuczstthFMD87UOudbntYi5QAyn6CNTK753bVDsNeDXbg6', '456456', 'women-default.png', 388888888, '2255-12-12', 'Hombre'),
-(3, 'Martin', 'Romero', 'martin@gmail.com', '$2a$10$Sw3rSeCtxYwq.TmZpjdw7OoOvcNWakJiI7XsPNaMngtx5LpbgICFu', '456456', 'women-default.png', 38888888, '2005-05-12', 'Hombre'),
-(4, 'roberta', 'Monzon', 'roberta@gmail.com', '$2a$10$Dvy9wWHYsXcwhY3jYM1oEuqdB9Bb6/Ypa.HI1SllfwvVUlYH2x34.', '456456', 'women-default.png', 3885123123, '2005-12-02', ''),
-(5, 'Marta Maria', 'Lopez', 'marta@gmail.com', '$2a$10$PEvSaimtqJP4gAtQsbF9LOjkdwUR5O6Dt4mQigm3VXSZqbIQ/ZayG', '123123', 'image-1702353099576.jpg', 3885123123, '2002-12-02', ''),
-(6, 'Rocio', 'Velazquez', 'ro@gmail.com', '$2a$10$qgEBQTQbjove87mPS64e2eNjVd4kpktno3dFSljK18VwKcJ2tSnpC', '421511hca', 'image-1728418483484.jpeg', 388592938, '2000-12-02', '');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `favorites`
---
-ALTER TABLE `favorites`
-  ADD PRIMARY KEY (`id_favorites`),
-  ADD KEY `user_favorite_user_id_foreing` (`id_user`),
-  ADD KEY `lodging_favorite_lodging_id_foreing` (`id_lodging`);
-
---
--- Indices de la tabla `images_lodging`
---
-ALTER TABLE `images_lodging`
-  ADD PRIMARY KEY (`id_image`),
-  ADD KEY `images_lodging_lodging_id_foreing` (`id_lodging`);
-
---
--- Indices de la tabla `include`
---
-ALTER TABLE `include`
-  ADD PRIMARY KEY (`id_include`);
-
---
--- Indices de la tabla `include_lodging`
---
-ALTER TABLE `include_lodging`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `include_lodging_lodging_id_foreing` (`id_lodging`),
-  ADD KEY `include_lodging_include_id_foreing` (`id_include`);
-
---
--- Indices de la tabla `lodging`
---
-ALTER TABLE `lodging`
-  ADD PRIMARY KEY (`id_lodging`),
-  ADD KEY `lodging_user_id_foreing` (`id_user`);
-
---
--- Indices de la tabla `reserve`
---
-ALTER TABLE `reserve`
-  ADD PRIMARY KEY (`id_reserve`),
-  ADD KEY `lodging_user_lodging_id_foreing` (`id_lodging`),
-  ADD KEY `lodging_user_user_id_foreing` (`id_guest`);
-
---
--- Indices de la tabla `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `favorites`
---
-ALTER TABLE `favorites`
-  MODIFY `id_favorites` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de la tabla `images_lodging`
---
-ALTER TABLE `images_lodging`
-  MODIFY `id_image` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
-
---
--- AUTO_INCREMENT de la tabla `include`
---
-ALTER TABLE `include`
-  MODIFY `id_include` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT de la tabla `include_lodging`
---
-ALTER TABLE `include_lodging`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
-
---
--- AUTO_INCREMENT de la tabla `lodging`
---
-ALTER TABLE `lodging`
-  MODIFY `id_lodging` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT de la tabla `reserve`
---
-ALTER TABLE `reserve`
-  MODIFY `id_reserve` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `favorites`
---
-ALTER TABLE `favorites`
-  ADD CONSTRAINT `lodging_favorite_lodging_id_foreing` FOREIGN KEY (`id_lodging`) REFERENCES `lodging` (`id_lodging`),
-  ADD CONSTRAINT `user_favorite_user_id_foreing` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
-
---
--- Filtros para la tabla `images_lodging`
---
-ALTER TABLE `images_lodging`
-  ADD CONSTRAINT `images_lodging_lodging_id_foreing` FOREIGN KEY (`id_lodging`) REFERENCES `lodging` (`id_lodging`);
-
---
--- Filtros para la tabla `include_lodging`
---
-ALTER TABLE `include_lodging`
-  ADD CONSTRAINT `include_lodging_include_id_foreing` FOREIGN KEY (`id_include`) REFERENCES `include` (`id_include`),
-  ADD CONSTRAINT `include_lodging_lodging_id_foreing` FOREIGN KEY (`id_lodging`) REFERENCES `lodging` (`id_lodging`);
-
---
--- Filtros para la tabla `lodging`
---
-ALTER TABLE `lodging`
-  ADD CONSTRAINT `lodging_user_id_foreing` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
-
---
--- Filtros para la tabla `reserve`
---
-ALTER TABLE `reserve`
-  ADD CONSTRAINT `lodging_user_lodging_id_foreing` FOREIGN KEY (`id_lodging`) REFERENCES `lodging` (`id_lodging`),
-  ADD CONSTRAINT `lodging_user_user_id_foreing` FOREIGN KEY (`id_guest`) REFERENCES `user` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

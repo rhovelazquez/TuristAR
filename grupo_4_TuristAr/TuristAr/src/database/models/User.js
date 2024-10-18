@@ -38,6 +38,9 @@ module.exports = (sequelize, dataTypes) => {
      },
      birth_day:{
       type: dataTypes.DATE
+     },
+     genre:{
+      type: dataTypes.STRING
      }
 
   }
