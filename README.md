@@ -11,6 +11,6 @@ Programado con nodejs y express
 
 
 **Puede usar xampp o WorkBench, solo configurar src/database/config/config.js**
-**npm run db:create** previo para las creacion de tablas y schema
-insert.sql para llenar las tablas
-Se levanta con xampp
+// - **npm run db:create** previo para las creacion de tablas y schema - //
+// - insert.sql para llenar las tablas -//
+
