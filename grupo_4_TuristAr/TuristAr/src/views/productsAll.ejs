@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include ('./partials/head.ejs') %>
+<!-- <link rel="stylesheet" href="/css/crear.css"> -->
+<link rel="stylesheet" href="/css/busquedas.css">
+
+    <body>
+        <%- include('./partials/header.ejs') %>
+            <main class="mainprod debajo-header">
+                <p class="titulo">Todos los Hospedajes</p>
+            <div class="resultados">
+                <% for (let i = 0 ; i < products.length ; i++) { %>
+
+                    <article class="card-search">
+                        <div class="carousel">
+                            <div class="carousel-container">
+                                <% for (let j = 0; j < products[i].images.length; j++) { %>
+                                    <a href="/products/detail/<%= products[i].id_lodging %>">
+                                        <img class="img" src="/images/products/<%= products[i].images[j].name %>" alt="Imagen <%= j + 1 %>">
+                                    </a>
+                                <% } %>
+                            </div>
+                            <button class="prev-btn">&lt;</button>
+                            <button class="next-btn">&gt;</button>
+                        </div>
+                        <div class="info">
+                            <!-- Información de la tarjeta -->
+                            <h2 class="productName"><%= products[i].name %></h2>
+                            <p class="productLocality"><%= products[i].locality %>,</p>
+                            <p class="productProvince"><%= products[i].province %></p>
+                            <p class="productPrice">$ <%= products[i].price %></p>
+                            <a class="ver-mas" href="/products/detail/<%= products[i].id_lodging %>">Ver más</a>
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+            <script src="/js/cardsProducts.js"></script>
+            </main>
+            <%- include('./partials/footer.ejs')%>
+    </body>
+
+</html>

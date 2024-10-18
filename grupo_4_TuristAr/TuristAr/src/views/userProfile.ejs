@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles-userProfile.css">
+    <link rel="stylesheet" href="/css/stylesheet-home.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+    <title><%= usuario.name + " " +usuario.last_name %></title>
+    <%-include ('./partials/head.ejs') %>
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <main class="main debajo-header-user">
+        <div class="userHeader">
+            <img class="portada" src="/images/userPortada/portadaDefault.jpg" alt="">
+            <img class="fotoPerfil" src="/images/users/<%= usuario.image %>" alt="">
+            <!-- Revisar que pasa cuando hay nombres muy largos -->
+            <h1 class="userName-profile"><%= usuario.name + ' ' + usuario.last_name %></h1>
+        </div>
+        <div class="userMain">
+            <div class="container1">
+                <section class="datos">
+                    <h4>Tus datos:</h4>
+                    <p>Nombre y apellido: <%= usuario.name + ' ' + usuario.last_name %></p>
+                    <p>Teléfono:  <%= usuario.phone %> </p>
+                    <p>Fecha de nacimiento: <%= usuario.birth_day %></p>
+                </section>
+                <div class="publiEdit">
+                    <a class="itemPubliEdit" href="/products/create">Publicar Hospedaje</a>
+                    <a class="itemPubliEdit" href="/usuario/edit/<%= usuario.id %>">Editar Perfil</a>
+                </div>
+            </div>
+            <div class="container2">
+                <!-- <section class="reservas">
+                    <h4>Reservas Actuales: </h4>
+                    <div>Aqui va una imagen y descripcion de la reserva del usuario</div>
+                </section> -->
+                <section class="favoritos">
+                    <h4>Favoritos: </h4>
+                    <% favoritosUsuario.favorites.forEach(prod => { %>
+                        <ul class="listFav">
+                            <li class="listItem">
+                                
+                                <a class="favoritos-item" href="/products/detail/<%=prod.id_lodging %>"> <%= prod.name%></a>
+                    
+                            </li>
+                        </ul>
+
+                    <%})%>
+                </section>
+                <section class="favoritos">
+                    <h4>Mis Hospedajes: </h4>
+                    <% producto.forEach(prod => { %>
+                        <ul class="listItemContainer listFav">
+                            <li class="listItem">
+                                
+                                <a class="favoritos-item" href="/products/detail/<%=prod.id_lodging %>"> <%= prod.name%></a>
+                                <a class="deleteButton" href="/products/delete/<%=prod.id_lodging %>">Eliminar</a>
+                                <a class="editButton" href="/products/edit/<%=prod.id_lodging %>">Editar</a>
+                            </li>
+                        </ul>
+
+                    <%})%>
+                    <!-- <div>Aqui van hospedajes del usuario</div> -->
+                </section>
+                
+            </div>
+        </div>
+    </main>
+    <%- include('./partials/footer.ejs')%>
+    <script src="/js/userProfile.js"></script>
+</body>
+</html>

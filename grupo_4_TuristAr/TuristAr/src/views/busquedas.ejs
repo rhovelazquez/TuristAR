@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/busquedas.css">
+    <%-include ('./partials/head.ejs') %>
+    <title>Resultados de búsqueda</title>
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <main class="main debajo-header">
+        <p class="titulo">Resultados de la búsqueda</p>
+        <div class="resultados">
+
+            <% if(busquedas.length > 0){ %>
+
+                <% for (let i = 0 ; i < busquedas.length ; i++) { %>
+
+                    <article class="card-search">
+                        <div class="carousel1">
+                            <div class="carousel-container">
+                                <% for (let j = 0; j < busquedas[i].images.length; j++) { %>
+                                    <a href="/products/detail/<%= busquedas[i].id_lodging %>">
+                                        <img class="img" src="/images/products/<%= busquedas[i].images[j].name %>" alt="Imagen <%= j + 1 %>">
+                                    </a>
+                                <% } %>
+                            </div>
+                            <button class="prev-btn">&lt;</button>
+                            <button class="next-btn">&gt;</button>
+                        </div>
+                        <div class="info">
+                            <!-- Información de la tarjeta -->
+                            <h2 class="productName"><%= busquedas[i].name %></h2>
+                            <p class="productLocality"><%= busquedas[i].locality %>,</p>
+                            <p class="productProvince"><%= busquedas[i].province %></p>
+                            <p class="productPrice">$ <%= busquedas[i].price %></p>
+                            <a class="ver-mas" href="/products/detail/<%= busquedas[i].id_lodging %>">Ver más</a>
+                        </div>
+                    </article>
+                <% } %>
+            <% }else { %>
+
+                    <p class="disculpa"> Lo lamento, no tenemos hospedajes en esa ubicación </p>
+
+                <% } %>
+        </div>
+        <script src="/js/cardsProducts.js"></script>
+    </main>
+    <%- include('./partials/footer.ejs')%>
+</body>
+</html>

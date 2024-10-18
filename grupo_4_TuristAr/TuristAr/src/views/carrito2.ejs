@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b4df2da41a.js" crossorigin="anonymous"></script>
+<!--     <link rel="stylesheet" href="/css/stylesheet-home.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="/css/carrito2.css">
+    <!-- <link rel="stylesheet" href="/css/busquedas.css"> -->
+    <%-include ('./partials/head.ejs') %>
+    <title>carrito</title>
+</head>
+<body>
+    
+    <%- include('./partials/header.ejs') %>
+    
+    <main class="debajo-header mainPago"><!-- 
+        <div class="conteiner">
+                <div class="conteiner-img">
+                    <img src="/images/products/<%= producto.images[0].name %>"alt="<%= producto.name %>" >
+                </div>
+                <div class="dates">
+                    <h4>Datos de tu reserva</h2>
+                    <p>Provincia/departamento o ciudad</p>
+                        
+                    <p class="valoracion"><i class="fa-solid fa-star"></i>Calificacion del cliente</p>
+                    <p>Fecha de entrada-Fecha de salida</p>
+                </div>
+        </div>  -->
+        <h3 class="title-pago">Finalizar Reserva</h3>
+        <div class="formularios">
+            <form action="/carrito/resumen/2" method="post" class="formPago">
+                <label>Tarjeta</label>
+                <select name="" id="">
+                    <option value="Debito">Debito</option>
+                    <option value="credito">Credito</option>
+                </select>
+                <label>Numero de Tarjeta</label>
+                <input type="text" placeholder="1234" required class="control">
+                
+                <label>Nombre del titular</label>
+                <input type="text" placeholder="Nombre" required class="control">
+                
+                
+                <label>Vencimiento</label>
+                <input type="text" placeholder="4/30" required class="control">
+                
+                
+                <label>CVV</label>
+                <input type="text" placeholder="012" required class="control">
+                
+                
+                <label>CODIGO Postal</label>
+                <input type="number" placeholder="Ej: 4600" required class="control">
+                
+                <!-- 
+                    <label>Pais</label>
+                    <select name="" id="" class="control">
+                    <option value="USA">Estados Unidos</option>
+                    <option value="Canada">Canadá</option>
+                    <option value="Mexico">México</option>
+                    <option value="Brazil">Brasil</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Peru">Perú</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Cuba">Cuba</option>
+                    </select>
+                 -->
+        
+                <!-- <label>Nacionalidad</label>
+                <input type="text" placeholder="Argentino" required class="control"> -->
+                
+                <a class="buttomPago" href="/"> Confirmar Reserva</a>
+
+            </form>
+        </div>
+        <div class="resumen">
+            <div class="precioResumen">
+                <p class="precioNoche">Precio por noche:</p>
+                <p class="resumenItem">$ <%= producto.price %></p>
+                <p class="precioNoche">Nombre del Usuario</p>
+                <p class="resumenItem"><%= usuario.name %> <%= usuario.last_name %></p>
+                <p class="precioNoche">Correo del Usuario</p>
+                <p class="resumenItem"><%= usuario.email %></p>
+            </div>
+            <div class="resumenHosp">
+                <% for (let i = 0 ; i < 1 ; i++) { %>
+
+                    <article class="card-search">
+                        <div class="carousel1">
+                            <div class="carousel-container">
+                                <% for (let j = 0; j < producto.images.length; j++) { %>
+                                    <a href="/products/detail/<%= producto.id_lodging %>">
+                                        <img class="img" src="/images/products/<%= producto.images[j].name %>" alt="Imagen <%= j + 1 %>">
+                                    </a>
+                                <% } %>
+                            </div>
+                            <button class="prev-btn">&lt;</button>
+                            <button class="next-btn">&gt;</button>
+                        </div>
+                        <div class="info">
+                            <!-- Información de la tarjeta -->
+                            <h2 class="productName"><%= producto.name %></h2>
+                            <p class="productLocality"><%= producto.locality %>,</p>
+                            <p class="productProvince"><%= producto.province %></p>
+                            <p class="productPrice">$ <%= producto.price %></p>
+                            <!-- <a class="ver-mas" href="/products/detail/<%= producto.id_lodging %>">Ver más</a> -->
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+        </div>
+              
+        
+        
+    </main>
+    <%- include('./partials/footer.ejs')%>
+</body>
+</html>
