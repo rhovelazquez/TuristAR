@@ -25,13 +25,12 @@ const arrayValidaciones = [
         .withMessage("El email es obligatorio")
         .isEmail()
         .withMessage("Formato inválido")
-        .custom(async(value, { req }) => {
-            const user = await db.User.findOne({where: {email:req.body.email}})
-    
-          if (user) {
-            return false;
-          }
-          return true;
+        .custom(async (value) => {
+            const user = await db.User.findOne({ where: { email: value } });
+            if (user) {
+                throw new Error("El email ya se encuentra registrado");
+            }
+            return true;
         })
         .withMessage("El email ya se encuentra registrado"),
 
