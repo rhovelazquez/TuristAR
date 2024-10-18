@@ -8,3 +8,5 @@ CRUD de productos
 CRUD de usuarios
 CRUD de reservas 
 Programado con nodejs y express 
+
+**cambiar puerto a 3306 de ser necesario**
